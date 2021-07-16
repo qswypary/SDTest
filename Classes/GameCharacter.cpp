@@ -142,6 +142,11 @@ std::vector<cocos2d::Label *> GameCharacter::getLabels() const
 	return vec;
 }
 
+void GameCharacter::setGrowPoint(int growPoint)
+{
+	_growPoint = growPoint;
+}
+
 void GameCharacter::parseStaticData(const rapidjson::Value& staticData)
 {
 	assert(staticData.IsObject());

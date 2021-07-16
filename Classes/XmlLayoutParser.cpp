@@ -1,8 +1,11 @@
 #include "XmlLayoutParser.h"
+#include "WidgetCharGrow.h"
+#include "WidgetCharScroller.h"
 #include <cctype>
 
 std::shared_ptr<XmlLayoutParser> XmlLayoutParser::instance;
 const char XmlLayoutParser::_BIND_NAME_SP = '.';
+Maps::StringMap<XmlLayoutParser::CreateFunc> XmlLayoutParser::_WIDGET_MAP;
 
 XmlLayoutParser::XmlLayoutParser() = default;
 
@@ -10,6 +13,8 @@ std::shared_ptr<XmlLayoutParser> XmlLayoutParser::getInstance()
 {
 	if (!instance) {
 		instance = std::make_unique<XmlLayoutParser>(XmlLayoutParser());
+		_WIDGET_MAP["charGrow"] = CreateFunc(WidgetCharGrow::create);
+		_WIDGET_MAP["charScroller"] = CreateFunc(WidgetCharScroller::create);
 	}
 	return instance;
 }
@@ -192,7 +197,7 @@ cocos2d::Node* XmlLayoutParser::parseNodeRecursive(
 		ccnode = parseToLayer(node);
 	}
 	else if (name == "widget") {
-		ccnode = cocos2d::Layer::create();
+		ccnode = parseToWidget(node);
 	}
 
 	// ½âÎö°ó¶¨
@@ -361,6 +366,21 @@ cocos2d::Layer* XmlLayoutParser::parseToLayer(const rapidxml::xml_node<>& node) 
 	layer->setPosition(cocos2d::Size(width, height) / 2.0);
 	parseNodeInfo(node, *layer);
 	return layer;
+}
+
+WidgetOnLayer* XmlLayoutParser::parseToWidget(const rapidxml::xml_node<>& node) const
+{
+	float width = _rootScene->getContentSize().width,
+		height = _rootScene->getContentSize().height;
+
+	std::string bind = node.first_attribute("bind")->value();
+
+	auto widget = _WIDGET_MAP[bind]();
+	widget->setIgnoreAnchorPointForPosition(false);
+	widget->setAnchorPoint(_defaultAreaAnchor);
+	widget->setPosition(cocos2d::Size(width, height) / 2.0);
+	parseNodeInfo(node, *widget);
+	return widget;
 }
 
 cocos2d::Color3B XmlLayoutParser::strToColor(std::string rgb) const

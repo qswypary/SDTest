@@ -49,6 +49,8 @@ public:
 	std::unique_ptr<Maps::StringMap<double>> grow(const Maps::StringMap<double> growthItems);
 
 	std::vector<cocos2d::Label *> getLabels() const;
+	
+	void setGrowPoint(int growPoint);
 
 private:
 	void parseStaticData(const rapidjson::Value& staticData);

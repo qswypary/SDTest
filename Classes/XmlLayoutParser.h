@@ -3,11 +3,16 @@
 #include "cocos2d.h"
 #include "rapidxml/rapidxml.hpp"
 #include "Maps.h"
+#include "WidgetOnLayer.h"
 
 class XmlLayoutParser {
 private:
+	typedef WidgetOnLayer* (*CreateFunc)();
+
 	static std::shared_ptr<XmlLayoutParser> instance;
+
 	static const char _BIND_NAME_SP;
+	static Maps::StringMap<CreateFunc> _WIDGET_MAP;
 
 	cocos2d::Layer* _rootScene;
 	Maps::StringMap<cocos2d::Color3B> _defaultColors;
@@ -41,6 +46,7 @@ private:
 	cocos2d::MenuItemLabel* parseToMenuItemLabel(const rapidxml::xml_node<>& node) const;
 	cocos2d::MenuItemImage* parseToMenuItemImage(const rapidxml::xml_node<>& node) const;
 	cocos2d::Layer* parseToLayer(const rapidxml::xml_node<>& node) const;
+	WidgetOnLayer* parseToWidget(const rapidxml::xml_node<>& node) const;
 
 	cocos2d::Color3B strToColor(std::string rgb) const;
 };

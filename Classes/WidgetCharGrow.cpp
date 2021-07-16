@@ -5,10 +5,7 @@
 cocos2d::Layer* WidgetCharGrow::createWidget(std::shared_ptr<GameCharacter> chara)
 {
 	auto widget = WidgetCharGrow::create();
-	widget->_char = chara;
-	widget->initCharData();
-	widget->initBoundNodes();
-	widget->refresh();
+	widget->switchCharacter(chara);
 
 	return widget;
 }
@@ -19,15 +16,7 @@ bool WidgetCharGrow::init()
 		return false;
 	}
 
-	// 从 XML 文件读取布局
-	auto fileutils = cocos2d::FileUtils::getInstance();
-	std::string xmldata = fileutils->getStringFromFile("json/widgetCharGrowLayout.xml");
-
-	rapidxml::xml_document<> xmldoc;
-	xmldoc.parse<0>(const_cast<char*>(xmldata.c_str()), xmldata.size());
-
-	auto parser = XmlLayoutParser::getInstance();
-	_boundNodes = parser->parseIntoScene(xmldoc, *this);
+	loadXmlLayout("json/widgetCharGrowLayout.xml");
 
 	return true;
 }
@@ -52,7 +41,7 @@ void WidgetCharGrow::initBoundNodes()
 {
 	// 渲染布局
 	// 角色基础信息
-	const auto& bound = _boundNodes;
+	const auto& bound = getBoundNodes();
 	dynamic_cast<cocos2d::Sprite*>(bound.at("info.avatar"))->setTexture(
 		_char->getAvatarFileName());
 	XmlLayoutParser::renderLabel(
@@ -121,19 +110,35 @@ void WidgetCharGrow::initBoundNodes()
 		));
 }
 
+void WidgetCharGrow::switchCharacter(std::shared_ptr<GameCharacter> chara)
+{
+	_char = chara;
+	initCharData();
+	initBoundNodes();
+	refresh();
+}
+
 void WidgetCharGrow::refresh()
 {
 	// 渲染布局
 	// 属性值
-	const auto& bound = _boundNodes;
+	const auto& bound = getBoundNodes();
 	for (auto attr : _rawAttrs) {
 		std::string id = attr.first;
+		auto rawl = dynamic_cast<cocos2d::Label*>(bound.at("attrs." + id + ".prev"));
+		auto grownl = dynamic_cast<cocos2d::Label*>(bound.at("attrs." + id + ".grown"));
 		XmlLayoutParser::renderLabel(
-			*dynamic_cast<cocos2d::Label*>(bound.at("attrs." + id + ".prev")),
+			*rawl,
 			"value", std::to_string(attr.second));
 		XmlLayoutParser::renderLabel(
-			*dynamic_cast<cocos2d::Label*>(bound.at("attrs." + id + ".grown")),
+			*grownl,
 			"value", std::to_string(_grownAttrs.at(id)));
+		if (attr.second != _grownAttrs.at(id)) {
+			grownl->setTextColor(cocos2d::Color4B::RED);
+		}
+		else {
+			grownl->setTextColor(rawl->getTextColor());
+		}
 	}
 	// 加点
 	for (auto item : *_growItems) {
@@ -162,10 +167,31 @@ void WidgetCharGrow::changeGrowthPoint(Ref* pSender, std::string item, int quant
 
 void WidgetCharGrow::okButtonCallback(Ref* pSender)
 {
+	// 提交到角色信息
+	_char->grow(_addPoints);
+	_char->setGrowPoint(_leftPoints);
+	// 更新显示数据
+	for (auto &item : _rawAttrs) {
+		item.second = _grownAttrs.at(item.first);
+	}
+	for (auto& item : _addPoints) {
+		item.second = 0.0;
+	}
+	refresh();
 }
 
 void WidgetCharGrow::clearButtonCallback(Ref* pSender)
 {
+	for (auto& item : _grownAttrs) {
+		item.second = _rawAttrs.at(item.first);
+	}
+	double sum = 0.0;
+	for (auto& item : _addPoints) {
+		sum += item.second;
+		item.second = 0.0;
+	}
+	_leftPoints += sum;
+	refresh();
 }
 
 void WidgetCharGrow::autoButtonCallback(Ref* pSender)

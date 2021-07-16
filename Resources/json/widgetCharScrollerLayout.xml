@@ -5,10 +5,10 @@
 			<color name="text" value="614e30"/>
 		</colors>
 		<font size="18" filePath="fonts/msyh.ttc" color="text"/>
-		<area width="720" height="540"/>
+		<area width="46" height="540"/>
 		<anchor x="0.0" y="0.0"/>
 	</settings>
 	<body>
-		<static srcPath="img/charGrow-Bg02.png" x="622" y="0"/>
+		<static srcPath="img/charGrow-Bg02.png" x="0" y="0"/>
     </body>
 </layout>

@@ -219,7 +219,7 @@ bool Widget::init()
         return true;
     }
     return false;
-}
+}\
 
 void Widget::onEnter()
 {

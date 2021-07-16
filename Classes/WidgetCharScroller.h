@@ -1,8 +1,9 @@
 #pragma once
 #include <cocos2d.h>
 #include "GameCharacter.h"
+#include "WidgetOnLayer.h"
 
-class WidgetCharScroller : public cocos2d::Layer {
+class WidgetCharScroller : public WidgetOnLayer {
 private:
 	std::shared_ptr<GameCharacter> _currChar;
 	std::unordered_map<std::string, std::shared_ptr<GameCharacter>> _chars;

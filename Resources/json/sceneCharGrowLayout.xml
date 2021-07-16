@@ -5,11 +5,11 @@
 			<color name="text" value="614e30"/>
 		</colors>
 		<font size="18" filePath="fonts/msyh.ttc" color="text"/>
-		<area width="720" height="540" x="360" y="270"/>
+		<area width="720" height="540"/>
 		<anchor x="0.0" y="0.0"/>
 	</settings>
 	<body>
-        <widget bind="charGrow"/>
-        <widget bind="charScroller"/>
+        <widget bind="charGrow" x="331" y="270"/>
+        <widget bind="charScroller" x="645" y="270"/>
     </body>
 </layout>

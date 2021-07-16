@@ -1,11 +1,11 @@
 #pragma once
 #include <cocos2d.h>
 #include "GameCharacter.h"
+#include "WidgetOnLayer.h"
 
-class WidgetCharGrow : public cocos2d::Layer {
+class WidgetCharGrow : public WidgetOnLayer {
 private:
     std::shared_ptr<GameCharacter> _char;
-    Maps::StringMap<cocos2d::Node*> _boundNodes;
     std::shared_ptr<std::vector<std::string>> _growItems;
 
     Maps::StringMap<int> _rawAttrs;
@@ -18,6 +18,7 @@ public:
 
     virtual bool init();
 
+    void switchCharacter(std::shared_ptr<GameCharacter> chara);
     void refresh();
 
     CREATE_FUNC(WidgetCharGrow);
