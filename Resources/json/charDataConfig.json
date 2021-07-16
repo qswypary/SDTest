@@ -1,0 +1,225 @@
+{
+    "attrName" : {
+        "maxHp" : "最大生命值",
+        "maxSp" : "最大技能值",
+        "maxMp" : "最大魔法值",
+        "atk" : "攻击力",
+        "def" : "防御力",
+        "pow" : "体力",
+        "str" : "力量",
+        "magic" : "魔法",
+        "tech" : "灵巧",
+        "dex" : "敏捷",
+        "hp" : "生命值",
+        "sp" : "技能值",
+        "mp" : "魔法值",
+        "hitRate" : "命中率",
+        "critRate" : "暴击率",
+        "critDmgRate" : "暴击伤害倍率",
+        "magicDmgValidity" : "属性魔法有效度",
+        "specialDmgRes" : "特殊伤害抗性",
+        "mpRecoverRate" : "魔法值回复速率",
+        "atIncreaseRate" : "行动值增加速率",
+        "light" : "光属性",
+        "earth" : "土属性",
+        "ice" : "冰属性",
+        "water" : "水属性",
+        "electr" : "电属性",
+        "grass" : "草属性",
+        "dark" : "暗属性",
+        "fire" : "火属性",
+        "wind" : "风属性",
+        "burn" : "烧灼伤害",
+        "freeze" : "冷冻伤害",
+        "inner" : "穿透伤害",
+        "mental" : "心灵伤害"
+    },
+    "charAttr" : {
+        "baseAttr": [
+            {
+                "id" : "maxHp",
+                "dataType" : "Integer"
+            },
+            {
+                "id" : "maxSp",
+                "dataType" : "Integer"
+            },
+            {
+                "id" : "maxMp",
+                "dataType" : "Integer"
+            },
+            {
+                "id" : "atk",
+                "dataType" : "Integer"
+            },
+            {
+                "id" : "def",
+                "dataType" : "Integer"
+            },
+            {
+                "id" : "str",
+                "dataType" : "Integer"
+            },
+            {
+                "id" : "magic",
+                "dataType" : "Integer"
+            },
+            {
+                "id" : "tech",
+                "dataType" : "Integer"
+            },
+            {
+                "id" : "dex",
+                "dataType" : "Integer"
+            }
+        ],
+        "dynamicAttr": [
+            {
+                "id" : "hp",
+                "dataType" : "Integer"
+            },
+            {
+                "id" : "sp",
+                "dataType" : "Integer"
+            },
+            {
+                "id" : "mp",
+                "dataType" : "Integer"
+            }
+        ],
+        "otherAttr": [
+            {
+                "id" : "hitRate",
+                "dataType" : "Decimal4"
+            },
+            {
+                "id" : "critRate",
+                "dataType" : "Decimal4"
+            },
+            {
+                "id" : "critDmgRate",
+                "dataType" : "Decimal2"
+            },
+            {
+                "id" : "magicDmgValidity:light",
+                "dataType" : "Decimal2"
+            },
+            {
+                "id" : "magicDmgValidity:earth",
+                "dataType" : "Decimal2"
+            },
+            {
+                "id" : "magicDmgValidity:ice",
+                "dataType" : "Decimal2"
+            },
+            {
+                "id" : "magicDmgValidity:water",
+                "dataType" : "Decimal2"
+            },
+            {
+                "id" : "magicDmgValidity:electr",
+                "dataType" : "Decimal2"
+            },
+            {
+                "id" : "magicDmgValidity:grass",
+                "dataType" : "Decimal2"
+            },
+            {
+                "id" : "magicDmgValidity:dark",
+                "dataType" : "Decimal2"
+            },
+            {
+                "id" : "magicDmgValidity:fire",
+                "dataType" : "Decimal2"
+            },
+            {
+                "id" : "magicDmgValidity:wind",
+                "dataType" : "Decimal2"
+            },
+            {
+                "id" : "specialDmgRes:burn",
+                "dataType" : "Decimal2"
+            },
+            {
+                "id" : "specialDmgRes:freeze",
+                "dataType" : "Decimal2"
+            },
+            {
+                "id" : "specialDmgRes:inner",
+                "dataType" : "Decimal2"
+            },
+            {
+                "id" : "specialDmgRes:mental",
+                "dataType" : "Decimal2"
+            },
+            {
+                "id" : "mpRecoverRate",
+                "dataType" : "Integer"
+            },
+            {
+                "id" : "atIncreaseRate",
+                "dataType" : "Decimal2"
+            }
+        ]
+    },
+    "expTable" : {
+        "1" : 53,
+        "6" : 75,
+        "11" : 104,
+        "16" : 145,
+        "21" : 203,
+        "26" : 283,
+        "31" : 395,
+        "36" : 551,
+        "41" : 769,
+        "46" : 1074,
+        "51" : 1498,
+        "56" : 2091,
+        "61" : 2918,
+        "66" : 4073,
+        "71" : 5684,
+        "76" : 7932,
+        "81" : 11070, "82" : 11833, "83" : 12649, "84" : 13521, "85" : 14453, 
+        "86" : 15450, "87" : 16515, "88" : 17654, "89" : 18871, "90" : 20171, 
+        "91" : 21562, "92" : 23049, "93" : 24637, "94" : 26336, "95" : 28152, 
+        "96" : 30092, "97" : 32167, "98" : 34384, "99" : 36755, "100" : 39289, 
+        "101" : 41997, "102" : 44892, "103" : 47987, "104" : 51295, "105" : 54832, 
+        "106" : 58612, "107" : 62652, "108" : 66972, "109" : 71588, "110" : 76524, 
+        "111" : 81799, "112" : 87438, "113" : 93466, "114" : 99910, "115" : 106797, 
+        "116" : 114160, "117" : 122030, "118" : 130443, "119" : 139435, "120" : 149048, 
+        "121" : 159323, "122" : 170307, "123" : 182048, "124" : 194598, "125" : 208013, 
+        "126" : 222353, "127" : 237682, "128" : 254068, "129" : 271583, "130" : 290306, 
+        "131" : 310319, "132" : 331712, "133" : 354580, "134" : 379025, "135" : 405154, 
+        "136" : 433085, "137" : 462942, "138" : 494856, "139" : 528971, "140" : 565438, 
+        "141" : 604419, "142" : 646087, "143" : 690628, "144" : 738239, "145" : 789133, 
+        "146" : 843535, "147" : 901687, "148" : 963849, "149" : 1030296, "150" : 1101323
+    },
+    "growthItem" : {
+        "pow" : {
+            "maxHp" : 100,
+            "maxSp" : 100,
+            "def" : 100
+        },
+        "str" : {
+            "maxHp" : 20,
+            "maxSp" : 80,
+            "str" : 100
+        },
+        "magic" : {
+            "maxSp" : 20,
+            "maxMp" : 80,
+            "magic" : 100
+        },
+        "tech" : {
+            "tech" : 100
+        },
+        "dex" : {
+            "dex" : 100
+        }
+    },
+    "dynamicAttrBinding" : {
+        "hp" : "maxHp",
+        "sp" : "maxSp",
+        "mp" : "maxMp"
+    }
+}

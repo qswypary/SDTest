@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+	<settings>
+		<colors>
+			<color name="text" value="614e30"/>
+		</colors>
+		<font size="18" filePath="fonts/msyh.ttc" color="text"/>
+		<area width="720" height="540"/>
+		<anchor x="0.0" y="0.0"/>
+	</settings>
+	<body>
+		<static srcPath="img/charGrow-Bg00.png" x="52" y="41"/>
+		<static srcPath="img/charGrow-Bg01.png" x="447" y="41"/>
+		<!-- <static srcPath="img/charGrow-Bg02.png" x="622" y="6"/> -->
+		<static srcPath="img/charGrow-BgAvatar.png" x="77" y="376"/>
+		<!-- <widget bind="charScroller" x="645" y="261"/> -->
+		<set bind="info">
+			<static bind="avatar" x="79" y="378"/>
+			<label bind="name" x="191" y="444" fontSize="30">{value}</label>
+			<label bind="title" x="191" y="422">{value}</label>
+			<label bind="level" x="191" y="397" fontSize="16">Lv. {value}</label>
+			<label bind="exp" x="191" y="378" fontSize="12">Exp {now} / {needed}</label>
+		</set>
+		<static srcPath="img/charGrow-Line.png" x="83" y="362"/>
+		<static srcPath="img/charGrow-Line.png" x="83" y="260"/>
+		<static srcPath="img/charGrow-Line.png" x="83" y="192"/>
+		<set bind="attrs" width="342" height="284" x="248" y="222">
+			<set bind="maxHp" width="342" height="18" x="171" y="261">
+				<label bind="name" x="96" y="0" anchorX="1.0">{value}</label>
+				<label bind="prev" x="118" y="0">{value}</label>
+				<static srcPath="img/charGrow-Arrow.png" x="195" y="0" anchorX="0.5"/>
+				<label bind="grown" x="232" y="0">{value}</label>
+			</set>
+			<set bind="maxSp" width="342" height="18" x="171" y="231">
+				<label bind="name" x="96" y="0" anchorX="1.0">{value}</label>
+				<label bind="prev" x="118" y="0">{value}</label>
+				<static srcPath="img/charGrow-Arrow.png" x="195" y="0" anchorX="0.5"/>
+				<label bind="grown" x="232" y="0">{value}</label>
+			</set>
+			<set bind="maxMp" width="342" height="18" x="171" y="201">
+				<label bind="name" x="96" y="0" anchorX="1.0">{value}</label>
+				<label bind="prev" x="118" y="0">{value}</label>
+				<static srcPath="img/charGrow-Arrow.png" x="195" y="0" anchorX="0.5"/>
+				<label bind="grown" x="232" y="0">{value}</label>
+			</set>
+			<set bind="atk" width="342" height="18" x="171" y="162">
+				<label bind="name" x="96" y="0" anchorX="1.0">{value}</label>
+				<label bind="prev" x="118" y="0">{value}</label>
+				<static srcPath="img/charGrow-Arrow.png" x="195" y="0" anchorX="0.5"/>
+				<label bind="grown" x="232" y="0">{value}</label>
+			</set>
+			<set bind="def" width="342" height="18" x="171" y="132">
+				<label bind="name" x="96" y="0" anchorX="1.0">{value}</label>
+				<label bind="prev" x="118" y="0">{value}</label>
+				<static srcPath="img/charGrow-Arrow.png" x="195" y="0" anchorX="0.5"/>
+				<label bind="grown" x="232" y="0">{value}</label>
+			</set>
+			<set bind="str" width="342" height="18" x="171" y="93">
+				<label bind="name" x="96" y="0" anchorX="1.0">{value}</label>
+				<label bind="prev" x="118" y="0">{value}</label>
+				<static srcPath="img/charGrow-Arrow.png" x="195" y="0" anchorX="0.5"/>
+				<label bind="grown" x="232" y="0">{value}</label>
+			</set>
+			<set bind="magic" width="342" height="18" x="171" y="63">
+				<label bind="name" x="96" y="0" anchorX="1.0">{value}</label>
+				<label bind="prev" x="118" y="0">{value}</label>
+				<static srcPath="img/charGrow-Arrow.png" x="195" y="0" anchorX="0.5"/>
+				<label bind="grown" x="232" y="0">{value}</label>
+			</set>
+			<set bind="tech" width="342" height="18" x="171" y="33">
+				<label bind="name" x="96" y="0" anchorX="1.0">{value}</label>
+				<label bind="prev" x="118" y="0">{value}</label>
+				<static srcPath="img/charGrow-Arrow.png" x="195" y="0" anchorX="0.5"/>
+				<label bind="grown" x="232" y="0">{value}</label>
+			</set>
+			<set bind="dex" width="342" height="18" x="171" y="3">
+				<label bind="name" x="96" y="0" anchorX="1.0">{value}</label>
+				<label bind="prev" x="118" y="0">{value}</label>
+				<static srcPath="img/charGrow-Arrow.png" x="195" y="0" anchorX="0.5"/>
+				<label bind="grown" x="232" y="0">{value}</label>
+			</set>
+		</set>
+		<label x="528" y="402" anchorX="0.5" fontSize="22">剩余点数</label>
+		<label bind="point" x="528" y="368" anchorX="0.5">{value}</label>
+		<set bind="items" width="121" height="134" x="528" y="259">
+			<set bind="pow" width="121" height="18" x="60" y="124">
+				<label bind="name" x="0" y="0">{value}</label>
+				<label bind="addv" x="83" y="0" anchorX="0.5">{value}</label>
+				<menu bind="adjust" width="74" height="18" x="83" y="0" anchorX="0.5" anchorY="0.0">
+					<menuItemImage bind="left" srcPath="img/charGrow-LeftArrow.png" x="6" y="9" anchorX="0.5" anchorY="0.5"/>
+					<menuItemImage bind="right" srcPath="img/charGrow-RightArrow.png" x="68" y="9" anchorX="0.5" anchorY="0.5"/>
+				</menu>
+			</set>
+			<set bind="str" width="121" height="18" x="60" y="94">
+				<label bind="name" x="0" y="0">{value}</label>
+				<label bind="addv" x="83" y="0" anchorX="0.5">{value}</label>
+				<menu bind="adjust" width="74" height="18" x="83" y="0" anchorX="0.5" anchorY="0.0">
+					<menuItemImage bind="left" srcPath="img/charGrow-LeftArrow.png" x="6" y="9" anchorX="0.5" anchorY="0.5"/>
+					<menuItemImage bind="right" srcPath="img/charGrow-RightArrow.png" x="68" y="9" anchorX="0.5" anchorY="0.5"/>
+				</menu>
+			</set>
+			<set bind="magic" width="121" height="18" x="60" y="64">
+				<label bind="name" x="0" y="0">{value}</label>
+				<label bind="addv" x="83" y="0" anchorX="0.5">{value}</label>
+				<menu bind="adjust" width="74" height="18" x="83" y="0" anchorX="0.5" anchorY="0.0">
+					<menuItemImage bind="left" srcPath="img/charGrow-LeftArrow.png" x="6" y="9" anchorX="0.5" anchorY="0.5"/>
+					<menuItemImage bind="right" srcPath="img/charGrow-RightArrow.png" x="68" y="9" anchorX="0.5" anchorY="0.5"/>
+				</menu>
+			</set>
+			<set bind="tech" width="121" height="18" x="60" y="34">
+				<label bind="name" x="0" y="0">{value}</label>
+				<label bind="addv" x="83" y="0" anchorX="0.5">{value}</label>
+				<menu bind="adjust" width="74" height="18" x="83" y="0" anchorX="0.5" anchorY="0.0">
+					<menuItemImage bind="left" srcPath="img/charGrow-LeftArrow.png" x="6" y="9" anchorX="0.5" anchorY="0.5"/>
+					<menuItemImage bind="right" srcPath="img/charGrow-RightArrow.png" x="68" y="9" anchorX="0.5" anchorY="0.5"/>
+				</menu>
+			</set>
+			<set bind="dex" width="121" height="18" x="60" y="4">
+				<label bind="name" x="0" y="0">{value}</label>
+				<label bind="addv" x="83" y="0" anchorX="0.5">{value}</label>
+				<menu bind="adjust" width="74" height="18" x="83" y="0" anchorX="0.5" anchorY="0.0">
+					<menuItemImage bind="left" srcPath="img/charGrow-LeftArrow.png" x="6" y="9" anchorX="0.5" anchorY="0.5"/>
+					<menuItemImage bind="right" srcPath="img/charGrow-RightArrow.png" x="68" y="9" anchorX="0.5" anchorY="0.5"/>
+				</menu>
+			</set>
+		</set>
+		<menu bind="options" width="121" height="134" x="528" y="65" anchorX="0.5" anchorY="0.0">
+			<menuItemImage bind="ok" srcPath="img/charGrow-ButtonNormal.png" srcPathSelected="img/charGrow-ButtonSelected.png" x="60" y="87" anchorX="0.5"/>
+			<menuItemImage bind="clear" srcPath="img/charGrow-ButtonNormal.png" srcPathSelected="img/charGrow-ButtonSelected.png" x="60" y="58" anchorX="0.5"/>
+			<menuItemImage bind="auto" srcPath="img/charGrow-ButtonNormal.png" srcPathSelected="img/charGrow-ButtonSelected.png" x="60" y="29" anchorX="0.5"/>
+			<menuItemImage bind="exit" srcPath="img/charGrow-ButtonNormal.png" srcPathSelected="img/charGrow-ButtonSelected.png" x="60" y="0" anchorX="0.5"/>
+		</menu>
+		<set width="121" height="134" x="528" y="65" anchorX="0.5" anchorY="0.0">
+			<label x="60" y="90" anchorX="0.5" fontSize="18" fontColor="ffeccf">确定</label>
+			<label x="60" y="61" anchorX="0.5" fontSize="18" fontColor="ffeccf">清空</label>
+			<label x="60" y="32" anchorX="0.5" fontSize="18" fontColor="ffeccf">自动</label>
+			<label x="60" y="3" anchorX="0.5" fontSize="18" fontColor="ffeccf">退出</label>
+		</set>
+	</body>
+</layout>

@@ -1,0 +1,43 @@
+[
+    {
+        "id" : "ch0000",
+        "expTable" : {},
+        "baseAttrData" : {
+            "maxHp" : 500,
+            "maxSp" : 50,
+            "maxMp" : 80,
+            "atk" : 50,
+            "def" : 50,
+            "str" : 50,
+            "magic" : 50,
+            "tech" : 50,
+            "dex" : 50
+        },
+        "baseAttrGrowth" : {
+            "maxHp" : 50,
+            "maxSp" : 5,
+            "maxMp" : 8,
+            "atk" : 5,
+            "def" : 5,
+            "str" : 5,
+            "magic" : 5,
+            "tech" : 5,
+            "dex" : 5
+        },
+        "otherAttrData" : {
+            "magicDmgValidity:light" : 100,
+            "magicDmgValidity:earth" : 100,
+            "magicDmgValidity:ice" : 100,
+            "magicDmgValidity:water" : 100,
+            "magicDmgValidity:electr" : 100,
+            "magicDmgValidity:grass" : 100,
+            "magicDmgValidity:dark" : 100,
+            "magicDmgValidity:fire" : 100,
+            "magicDmgValidity:wind" : 100,
+            "specialDmgRes:burn" : 0,
+            "specialDmgRes:freeze" : 0,
+            "specialDmgRes:inner" : 0,
+            "specialDmgRes:mental" : 0
+        }
+    }
+]
