@@ -31,7 +31,7 @@ void WidgetCharGrow::initCharData()
 	}
 	_leftPoints = _char->getGrowPoint();
 
-	auto attrs = _char->getBaseAttr();
+	auto attrs = _char->getFinalBaseAttr();
 	for (const auto &attr : *attrs) {
 		_rawAttrs[attr.first] = _grownAttrs[attr.first] = attr.second->getInteger();
 	}
@@ -178,6 +178,14 @@ void WidgetCharGrow::okButtonCallback(Ref* pSender)
 		item.second = 0.0;
 	}
 	refresh();
+
+	auto savefileu = SaveFileUtils::getInstance();
+	savefileu->clear(false);
+	savefileu->appendObjectInArray();
+	savefileu->setCurrentNodeInArray(0);
+	auto st = savefileu->getStatus();
+	_char->saveDynamicData(st);
+	savefileu->save("charGrowthData.save");
 }
 
 void WidgetCharGrow::clearButtonCallback(Ref* pSender)

@@ -3,6 +3,7 @@
 #include <json/document.h>
 #include "GameAttributeWithMaxium.h"
 #include "Maps.h"
+#include "SaveFileUtils.h"
 
 class GameCharacter
 {
@@ -10,11 +11,11 @@ private:
 	std::string _id;
 	std::string _name;
 	std::string _title;
-	boolean _member = true;
+	boolean _member = false;
 	int _level = 1;
 	int _nowExp = 0;
 	int _nextLvExp = 10;
-	int _growPoint = 100;
+	int _growPoint = 0;
 	std::string _avatarFilen;
 
 	std::shared_ptr<Maps::AttrMap> _BASE_ATTR;
@@ -23,14 +24,16 @@ private:
 	std::shared_ptr<std::vector<int>> _EXP;
 	std::shared_ptr<std::vector<int>> _ALL_EXP;
 
-	//std::unordered_map<std::string, GameAttributeWithMaxium> _dynamicAttr;
-	std::unordered_map<std::string, std::vector<GameAttribute>> _baseAttrGrowth;
-	std::unordered_map<std::string, GameAttributeWithMaxium> _finalBaseAttr;
+	std::shared_ptr<Maps::AttrWithMaxiumMap> _dynamicAttr;
+	std::shared_ptr<Maps::AttrMap> _finalBaseAttr;
+
+	std::unordered_map<std::string, std::vector<std::unique_ptr<GameAttribute>>> _baseAttrGrowth;
 
 public:
 	GameCharacter(std::string id, boolean member = true, int level = 1);
+	GameCharacter(const rapidjson::Value& staticData, const rapidjson::Value& info);
 	GameCharacter(const rapidjson::Value& staticData, 
-		const rapidjson::Value& info);
+		const rapidjson::Value& info, SaveFileUtils::Status st);
 
 	std::string getId() const;
 	std::string getName() const;
@@ -44,16 +47,19 @@ public:
 	std::shared_ptr<Maps::AttrMap> getBaseAttr() const;
 	std::shared_ptr<Maps::AttrMap> getOtherAttr() const;
 	std::shared_ptr<Maps::AttrMap> getBaseAttrGrothRate() const;
+	std::shared_ptr<Maps::AttrWithMaxiumMap> getDynamicAttr() const;
+	std::shared_ptr<Maps::AttrMap> getFinalBaseAttr() const;
 
 	std::unique_ptr<Maps::StringMap<double>> getGrowth(const Maps::StringMap<double> growthItems) const;
 	std::unique_ptr<Maps::StringMap<double>> grow(const Maps::StringMap<double> growthItems);
-
-	std::vector<cocos2d::Label *> getLabels() const;
 	
 	void setGrowPoint(int growPoint);
+
+	void saveDynamicData(SaveFileUtils::Status st);
 
 private:
 	void parseStaticData(const rapidjson::Value& staticData);
 	void parseInfo(const rapidjson::Value& info);
+	void initDynamicData();
+	void loadDynamicData(SaveFileUtils::Status st);
 };
-

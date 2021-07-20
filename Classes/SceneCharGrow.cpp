@@ -47,7 +47,12 @@ bool SceneCharGrow::init()
     auto arr2 = document2.GetArray();
     assert(arr2.Size() > 0);
 
-    auto chara = std::make_shared<GameCharacter>(GameCharacter(arr[0], arr2[0]));
+    auto savefileu = SaveFileUtils::getInstance();
+    savefileu->load("charGrowthData.save");
+    savefileu->setCurrentNodeInArray(0);
+    auto st = savefileu->getStatus();
+
+    auto chara = std::make_shared<GameCharacter>(GameCharacter(arr[0], arr2[0], st));
 
     // °ó¶¨×é¼þ
     _widgetCharScroller = dynamic_cast<WidgetCharScroller*>(bound["charScroller"]);
