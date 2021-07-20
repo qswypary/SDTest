@@ -113,10 +113,10 @@ std::unique_ptr<Maps::StringMap<double>> GameCharacter::grow(const Maps::StringM
 	auto points = util->grow(*_BASE_ATTR, growthItems);
 	for (auto &item : *points) {
 		item.second *= _BASE_ATTR_GROWTH_RATE->at(item.first)->getInteger();
-		// ¸ü¸Ä³É³¤Öµ¾ØÕó
+		// æ›´æ”¹æˆé•¿å€¼çŸ©é˜µ
 		auto& growth = _baseAttrGrowth.at(item.first)[0];
 		growth->setInteger(growth->getInteger() + item.second);
-		// ¸ü¸Ä»ù´¡ÊôÐÔ×îÖÕÖµ
+		// æ›´æ”¹åŸºç¡€å±žæ€§æœ€ç»ˆå€¼
 		auto &attr = _finalBaseAttr->at(item.first);
 		attr->setInteger(attr->getInteger() + item.second);
 	}
@@ -169,7 +169,7 @@ void GameCharacter::parseStaticData(const rapidjson::Value& staticData)
 	auto util = GameDataUtils::getInstance();
 	auto parser = JsonAttributeTableParser::getInstance();
 
-	// ½âÎö id
+	// è§£æž id
 	const rapidjson::Value* idv = &staticData.FindMember("id")->value;
 	if (!_id.empty() && idv->GetString() != _id) {
 		throw std::invalid_argument("the static data object does not belong to this character");
@@ -178,7 +178,7 @@ void GameCharacter::parseStaticData(const rapidjson::Value& staticData)
 		_id = idv->GetString();
 	}
 
-	// ½âÎö expTable µÄ Object
+	// è§£æž expTable çš„ Object
 	const rapidjson::Value* etv = &staticData.FindMember("expTable")->value;
 	assert(etv->IsObject());
 	if (etv->ObjectEmpty()) {
@@ -191,19 +191,19 @@ void GameCharacter::parseStaticData(const rapidjson::Value& staticData)
 		_ALL_EXP = pair.second;
 	}
 
-	// ½âÎö baseAttrData µÄ Object
+	// è§£æž baseAttrData çš„ Object
 	const rapidjson::Value* badv = &staticData.FindMember("baseAttrData")->value;
 	_BASE_ATTR = util->getBaseAttrs(_id + ":raw");
 	_finalBaseAttr = util->getBaseAttrs(_id);
 	parser->parseIntoAttrs(*badv, *_BASE_ATTR);
 	parser->parseIntoAttrs(*badv, *_finalBaseAttr);
 
-	// ½âÎö otherAttrData µÄ Object
+	// è§£æž otherAttrData çš„ Object
 	const rapidjson::Value* oadv = &staticData.FindMember("otherAttrData")->value;
 	_OTHER_ATTR = util->getOtherAttrs(_id);
 	parser->parseIntoAttrs(*oadv, *_OTHER_ATTR);
 
-	// ½âÎö baseAttrGrowth µÄ Object
+	// è§£æž baseAttrGrowth çš„ Object
 	const rapidjson::Value* bagv = &staticData.FindMember("baseAttrGrowth")->value;
 	_BASE_ATTR_GROWTH_RATE = util->getBaseAttrs(_id + util->getAttrIdSeparator() + "growth");
 	parser->parseIntoAttrs(*bagv, *_BASE_ATTR_GROWTH_RATE);

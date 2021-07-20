@@ -26,7 +26,7 @@ Maps::StringMap<cocos2d::Node*> XmlLayoutParser::parseIntoScene(const rapidxml::
 	auto layoutnode = root.first_node("layout");
 	assert(layoutnode);
 
-	// Ω‚Œˆ»´æ÷…Ë÷√Ω⁄µ„
+	// Ëß£ÊûêÂÖ®Â±ÄËÆæÁΩÆËäÇÁÇπ
 	auto settingsnode = layoutnode->first_node("settings");
 	assert(settingsnode);
 	rapidxml::xml_node<>* colorsnode = nullptr,
@@ -48,7 +48,7 @@ Maps::StringMap<cocos2d::Node*> XmlLayoutParser::parseIntoScene(const rapidxml::
 			anchornode = it;
 		}
 	}
-	// Ω‚Œˆ…´≤ …Ë÷√
+	// Ëß£ÊûêËâ≤ÂΩ©ËÆæÁΩÆ
 	if (colorsnode) {
 		for (auto it = colorsnode->first_node(); it != nullptr; it = it->next_sibling()) {
 			std::string name = it->name();
@@ -58,7 +58,7 @@ Maps::StringMap<cocos2d::Node*> XmlLayoutParser::parseIntoScene(const rapidxml::
 			}
 		}
 	}
-	// Ω‚Œˆ◊÷ÃÂ…Ë÷√
+	// Ëß£ÊûêÂ≠ó‰ΩìËÆæÁΩÆ
 	if (fontnode) {
 		for (auto it = fontnode->first_attribute(); it != nullptr; it = it->next_attribute()) {
 			std::string name = it->name();
@@ -73,7 +73,7 @@ Maps::StringMap<cocos2d::Node*> XmlLayoutParser::parseIntoScene(const rapidxml::
 			}
 		}
 	}
-	// Ω‚Œˆœ‘ æ«¯”Ú…Ë÷√
+	// Ëß£ÊûêÊòæÁ§∫Âå∫ÂüüËÆæÁΩÆ
 	scene.setIgnoreAnchorPointForPosition(false);
 	scene.setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
 	auto visibleSize = cocos2d::Director::getInstance()->getWinSize();
@@ -98,7 +98,7 @@ Maps::StringMap<cocos2d::Node*> XmlLayoutParser::parseIntoScene(const rapidxml::
 		}
 		scene.setContentSize(cocos2d::Size(width, height));
 	}
-	// Ω‚Œˆ√™µ„…Ë÷√
+	// Ëß£ÊûêÈîöÁÇπËÆæÁΩÆ
 	if (anchornode) {
 		float anchorX = _defaultAnchor.x, anchorY = _defaultAnchor.y;
 		for (auto na = anchornode->first_attribute(); na != nullptr; na = na->next_attribute()) {
@@ -114,7 +114,7 @@ Maps::StringMap<cocos2d::Node*> XmlLayoutParser::parseIntoScene(const rapidxml::
 		_defaultAnchor = cocos2d::Vec2(anchorX, anchorY);
 	}
 
-	// Ω‚Œˆ÷˜ÃÂΩ⁄µ„ ˜
+	// Ëß£Êûê‰∏ª‰ΩìËäÇÁÇπÊ†ë
 	auto bodynode = layoutnode->first_node("body");
 	parseNodeRecursive(*bodynode, "");
 
@@ -172,7 +172,7 @@ void XmlLayoutParser::renderLabel(cocos2d::Label& label, Maps::StringMap<std::st
 cocos2d::Node* XmlLayoutParser::parseNodeRecursive(
 	const rapidxml::xml_node<>& node, std::string fatherBind)
 {
-	// ¥¥Ω® cocos2d Ω⁄µ„
+	// ÂàõÂª∫ cocos2d ËäÇÁÇπ
 	cocos2d::Node* ccnode;
 	std::string name = node.name();
 	if (name == "body") {
@@ -200,7 +200,7 @@ cocos2d::Node* XmlLayoutParser::parseNodeRecursive(
 		ccnode = parseToWidget(node);
 	}
 
-	// Ω‚Œˆ∞Û∂®
+	// Ëß£ÊûêÁªëÂÆö
 	std::string bindName = fatherBind;
 	auto bind = node.first_attribute("bind");
 	if (bind) {
@@ -212,7 +212,7 @@ cocos2d::Node* XmlLayoutParser::parseNodeRecursive(
 		_boundNodes[bindName] = ccnode;
 	}
 
-	// Ω‚Œˆ◊”Ω⁄µ„
+	// Ëß£ÊûêÂ≠êËäÇÁÇπ
 	for (auto it = node.first_node(); it != nullptr; it = it->next_sibling()) {
 		if (it->type() == rapidxml::node_element) {
 			ccnode->addChild(parseNodeRecursive(*it, bindName));
@@ -227,7 +227,7 @@ void XmlLayoutParser::parseNodeInfo(const rapidxml::xml_node<>& node, cocos2d::N
 	float x = ccnode.getPositionX(), y = ccnode.getPositionY();
 	auto anchor = ccnode.getAnchorPoint();
 	float anchorX = anchor.x, anchorY = anchor.y;
-	// ±È¿˙ XML Ω⁄µ„ Ù–‘
+	// ÈÅçÂéÜ XML ËäÇÁÇπÂ±ûÊÄß
 	for (auto na = node.first_attribute(); na != nullptr; na = na->next_attribute()) {
 		std::string name = na->name();
 		if (name == "x") {
@@ -252,7 +252,7 @@ cocos2d::Label* XmlLayoutParser::parseToLabel(const rapidxml::xml_node<>& node) 
 	std::string filen = _defaultFontFilen;
 	int size = _defaultFontSize;
 	cocos2d::Color3B color = _defaultFontColor;
-	// ±È¿˙ XML Ω⁄µ„ Ù–‘
+	// ÈÅçÂéÜ XML ËäÇÁÇπÂ±ûÊÄß
 	for (auto na = node.first_attribute(); na != nullptr; na = na->next_attribute()) {
 		std::string name = na->name();
 		if (name == "fontSize") {
@@ -265,7 +265,7 @@ cocos2d::Label* XmlLayoutParser::parseToLabel(const rapidxml::xml_node<>& node) 
 			color = strToColor(na->value());
 		}
 	}
-	// ¥¥Ω®±Í«©∂‘œÛ
+	// ÂàõÂª∫Ê†áÁ≠æÂØπË±°
 	auto label = cocos2d::Label::createWithTTF(node.value(), filen, size);
 	label->setName(node.value());
 	label->setTextColor(cocos2d::Color4B(color));
@@ -277,14 +277,14 @@ cocos2d::Label* XmlLayoutParser::parseToLabel(const rapidxml::xml_node<>& node) 
 cocos2d::Sprite* XmlLayoutParser::parseToSprite(const rapidxml::xml_node<>& node) const
 {
 	std::string src;
-	// ±È¿˙ XML Ω⁄µ„ Ù–‘
+	// ÈÅçÂéÜ XML ËäÇÁÇπÂ±ûÊÄß
 	for (auto na = node.first_attribute(); na != nullptr; na = na->next_attribute()) {
 		std::string name = na->name();
 		if (name == "srcPath") {
 			src = na->value();
 		}
 	}
-	// ¥¥Ω®æ´¡È∂‘œÛ
+	// ÂàõÂª∫Á≤æÁÅµÂØπË±°
 	auto sprite = cocos2d::Sprite::create();
 	if (!src.empty()) {
 		sprite = cocos2d::Sprite::create(src);
@@ -298,7 +298,7 @@ cocos2d::Menu* XmlLayoutParser::parseToMenu(const rapidxml::xml_node<>& node) co
 {
 	float width = _rootScene->getContentSize().width,
 		height = _rootScene->getContentSize().height;
-	// ±È¿˙ XML Ω⁄µ„ Ù–‘
+	// ÈÅçÂéÜ XML ËäÇÁÇπÂ±ûÊÄß
 	for (auto na = node.first_attribute(); na != nullptr; na = na->next_attribute()) {
 		std::string name = na->name();
 		if (name == "width") {
@@ -308,7 +308,7 @@ cocos2d::Menu* XmlLayoutParser::parseToMenu(const rapidxml::xml_node<>& node) co
 			height = std::stof(na->value());
 		}
 	}
-	// ¥¥Ω®≤Àµ•∂‘œÛ
+	// ÂàõÂª∫ËèúÂçïÂØπË±°
 	auto menu = cocos2d::Menu::create();
 	menu->setContentSize(cocos2d::Size(width, height));
 	menu->setIgnoreAnchorPointForPosition(false);
@@ -327,7 +327,7 @@ cocos2d::MenuItemLabel* XmlLayoutParser::parseToMenuItemLabel(const rapidxml::xm
 cocos2d::MenuItemImage* XmlLayoutParser::parseToMenuItemImage(const rapidxml::xml_node<>& node) const
 {
 	std::string src, srcSelected;
-	// ±È¿˙ XML Ω⁄µ„ Ù–‘
+	// ÈÅçÂéÜ XML ËäÇÁÇπÂ±ûÊÄß
 	for (auto na = node.first_attribute(); na != nullptr; na = na->next_attribute()) {
 		std::string name = na->name();
 		if (name == "srcPath") {
@@ -337,7 +337,7 @@ cocos2d::MenuItemImage* XmlLayoutParser::parseToMenuItemImage(const rapidxml::xm
 			srcSelected = na->value();
 		}
 	}
-	// ¥¥Ω®≤Àµ•œÓƒø∂‘œÛ
+	// ÂàõÂª∫ËèúÂçïÈ°πÁõÆÂØπË±°
 	auto menuItem = cocos2d::MenuItemImage::create(src, srcSelected);
 	menuItem->setAnchorPoint(_defaultAnchor);
 	parseNodeInfo(node, *menuItem);
@@ -348,7 +348,7 @@ cocos2d::Layer* XmlLayoutParser::parseToLayer(const rapidxml::xml_node<>& node) 
 {
 	float width = _rootScene->getContentSize().width,
 		height = _rootScene->getContentSize().height;
-	// ±È¿˙ XML Ω⁄µ„ Ù–‘
+	// ÈÅçÂéÜ XML ËäÇÁÇπÂ±ûÊÄß
 	for (auto na = node.first_attribute(); na != nullptr; na = na->next_attribute()) {
 		std::string name = na->name();
 		if (name == "width") {
@@ -358,7 +358,7 @@ cocos2d::Layer* XmlLayoutParser::parseToLayer(const rapidxml::xml_node<>& node) 
 			height = std::stof(na->value());
 		}
 	}
-	// ¥¥Ω®Õº≤„∂‘œÛ
+	// ÂàõÂª∫ÂõæÂ±ÇÂØπË±°
 	auto layer = cocos2d::Layer::create();
 	layer->setContentSize(cocos2d::Size(width, height));
 	layer->setIgnoreAnchorPointForPosition(false);

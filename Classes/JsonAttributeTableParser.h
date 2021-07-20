@@ -24,8 +24,8 @@ public:
 		const rapidjson::Value& value, GameAttribute::DataType type, 
 		bool temp = true, std::string idprefix = "") const;
 
-	// ¸ù¾İ¸ø¶¨µÄÊôĞÔ map£¬½âÎö JSON value£¬²¢×°Åä»ØÊôĞÔ map ÖĞ
-	// ·µ»Ø×°Åä³É¹¦µÄÊôĞÔ¸öÊı
+	// æ ¹æ®ç»™å®šçš„å±æ€§ mapï¼Œè§£æ JSON valueï¼Œå¹¶è£…é…å›å±æ€§ map ä¸­
+	// è¿”å›è£…é…æˆåŠŸçš„å±æ€§ä¸ªæ•°
 	int parseIntoAttrs(const rapidjson::Value& value, Maps::AttrMap& attrs) const;
 	int parseIntoAttrs(const rapidjson::Value& value, Maps::AttrWithMaxiumMap& attrs) const;
 

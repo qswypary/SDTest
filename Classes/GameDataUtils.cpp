@@ -40,7 +40,7 @@ void GameDataUtils::loadCharDataConfig()
 	assert(document.IsObject());
 	auto parser = JsonAttributeTableParser::getInstance();
 
-	// ½âÎö attrName µÄ Object
+	// è§£æž attrName çš„ Object
 	auto tempAttrName = parser->parseToAttrUnorderedMap(
 		document.FindMember("attrName")->value, 
 		GameAttribute::Text);
@@ -49,7 +49,7 @@ void GameDataUtils::loadCharDataConfig()
 		(*_attrName)[item.first] = item.second->getText();
 	}
 
-	// ½âÎö charAttr µÄ Object£¬´´½¨Ô­ÐÍ
+	// è§£æž charAttr çš„ Objectï¼Œåˆ›å»ºåŽŸåž‹
 	const auto &attrVal = document.FindMember("charAttr")->value;
 	assert(attrVal.IsObject());
 	const auto& baseAttrVal = attrVal.FindMember("baseAttr")->value,
@@ -59,14 +59,14 @@ void GameDataUtils::loadCharDataConfig()
 	_otherAttrProto = parseAttrTable(otherAttrVal);
 	_dynamicAttrProto = parseAttrTable(dynamicAttrVal);
 
-	// ½âÎö expTable µÄ Object
-	// expTable ÖÐÈç¹ûÓÐÈ±Ê§µÄµÈ¼¶Êý¾Ý£¬Ä¬ÈÏÓÃÒ»´Îº¯ÊýÌî³ä
+	// è§£æž expTable çš„ Object
+	// expTable ä¸­å¦‚æžœæœ‰ç¼ºå¤±çš„ç­‰çº§æ•°æ®ï¼Œé»˜è®¤ç”¨ä¸€æ¬¡å‡½æ•°å¡«å……
 	auto expPair = parseExpTable(document.FindMember("expTable")->value);
 	_expTable = expPair.first;
 	_allExpTable = expPair.second;
 	_maxLv = _expTable->size();
 
-	// ½âÎö growthItem µÄ Object
+	// è§£æž growthItem çš„ Object
 	const auto &growthItemVal = document.FindMember("growthItem")->value;
 	assert(growthItemVal.IsObject());
 	_growthItem = std::make_shared<std::vector<std::string>>(std::vector<std::string>());
@@ -89,7 +89,7 @@ void GameDataUtils::loadCharDataConfig()
 		}
 	}
 
-	// ½âÎö dynamicAttrBinding µÄ Object
+	// è§£æž dynamicAttrBinding çš„ Object
 	auto tempAttrBinding = parser->parseToAttrUnorderedMap(
 		document.FindMember("dynamicAttrBinding")->value,
 		GameAttribute::Text);
@@ -352,13 +352,13 @@ double GameDataUtils::grow(const GameAttribute& attr, const Maps::StringMap<doub
 	std::string attrid = attr.getId();
 	double growsum = 0.0;
 	for (auto item : growItem) {
-		// ÕÒ³ö¸ÃÏîÄ¿ËùÓ°ÏìµÄÊôÐÔ
+		// æ‰¾å‡ºè¯¥é¡¹ç›®æ‰€å½±å“çš„å±žæ€§
 		auto itpair = _growthItemAssoAttr->equal_range(item.first);
 		for (auto it = itpair.first; it != itpair.second; ++it) {
-			// ¼ì²éÊÇ·ñÓ°Ïì attr
+			// æ£€æŸ¥æ˜¯å¦å½±å“ attr
 			std::string assoid = it->second.id;
 			if (isIdsAgree(assoid, attrid)) {
-				// Ó°Ïìµ½ attr£¬¼ÆËã³É³¤ÊýÖµ
+				// å½±å“åˆ° attrï¼Œè®¡ç®—æˆé•¿æ•°å€¼
 				growsum += it->second.assoPerc * item.second / 100.0;
 			}
 		}
@@ -371,10 +371,10 @@ std::unique_ptr<Maps::StringMap<double>> GameDataUtils::grow(
 {
 	std::unique_ptr<Maps::StringMap<double>> growsummap(new Maps::StringMap<double>());
 	for (auto item : growItem) {
-		// ÕÒ³ö¸ÃÏîÄ¿ËùÓ°ÏìµÄÊôÐÔ
+		// æ‰¾å‡ºè¯¥é¡¹ç›®æ‰€å½±å“çš„å±žæ€§
 		auto itpair = _growthItemAssoAttr->equal_range(item.first);
 		for (auto it = itpair.first; it != itpair.second; ++it) {
-			// ¼ì²éÊÇ·ñÓ°Ïì attrs ÖÐµÄÊôÐÔ
+			// æ£€æŸ¥æ˜¯å¦å½±å“ attrs ä¸­çš„å±žæ€§
 			std::string assoid = it->second.id;
 			auto findit = attrs.cbegin();
 			for (; findit != attrs.cend(); ++findit) {
@@ -383,7 +383,7 @@ std::unique_ptr<Maps::StringMap<double>> GameDataUtils::grow(
 				}
 			}
 			if (findit != attrs.end()) {
-				// Ó°Ïìµ½ attrs ÖÐµÄÊôÐÔ£¬¼ÆËã³É³¤ÊýÖµ
+				// å½±å“åˆ° attrs ä¸­çš„å±žæ€§ï¼Œè®¡ç®—æˆé•¿æ•°å€¼
 				std::string attrid = findit->first;
 				if (growsummap->find(attrid) == growsummap->end()) {
 					(*growsummap)[attrid] = 0.0;

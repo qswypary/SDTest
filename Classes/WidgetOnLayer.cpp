@@ -11,7 +11,7 @@ cocos2d::Layer* WidgetOnLayer::createWidgetByLayout(std::string layoutFilen)
 
 void WidgetOnLayer::loadXmlLayout(std::string layoutFilen)
 {
-	// ´Ó XML ÎÄ¼þ¶ÁÈ¡²¼¾Ö
+	// ä»Ž XML æ–‡ä»¶è¯»å–å¸ƒå±€
 	auto fileutils = cocos2d::FileUtils::getInstance();
 	std::string xmldata = fileutils->getStringFromFile(layoutFilen);
 

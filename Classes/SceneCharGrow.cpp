@@ -17,7 +17,7 @@ bool SceneCharGrow::init()
     auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
     cocos2d::Vec2 origin = cocos2d::Director::getInstance()->getVisibleOrigin();
 
-    // ´Ó XML ÎÄ¼þ¶ÁÈ¡²¼¾Ö
+    // ä»Ž XML æ–‡ä»¶è¯»å–å¸ƒå±€
     auto fileutils = cocos2d::FileUtils::getInstance();
     std::string xmldata = fileutils->getStringFromFile("json/sceneCharGrowLayout.xml");
 
@@ -29,8 +29,8 @@ bool SceneCharGrow::init()
     auto bound = parser->parseIntoScene(xmldoc, *_rootLayer);
     this->addChild(_rootLayer);
 
-    // Õý³£¶øÑÔÓ¦¸Ã´ÓÒ»¸ö¹«¹²ÊµÀýÀïÃæÈ¥ÕÒµ½Õâ¸ö½ÇÉ«µÄÊµÀý¾ÍÍêÊÂÁË
-    // ÕâÀïÔÝÊ±Ð´³ÉÖ±½Ó´ÓÎÄ¼þ¼ÓÔØ
+    // æ­£å¸¸è€Œè¨€åº”è¯¥ä»Žä¸€ä¸ªå…¬å…±å®žä¾‹é‡Œé¢åŽ»æ‰¾åˆ°è¿™ä¸ªè§’è‰²çš„å®žä¾‹å°±å®Œäº‹äº†
+    // è¿™é‡Œæš‚æ—¶å†™æˆç›´æŽ¥ä»Žæ–‡ä»¶åŠ è½½
     std::string data = fileutils->getStringFromFile("json/charStaticData.json");
 
     rapidjson::Document document;
@@ -54,7 +54,7 @@ bool SceneCharGrow::init()
 
     auto chara = std::make_shared<GameCharacter>(GameCharacter(arr[0], arr2[0], st));
 
-    // °ó¶¨×é¼þ
+    // ç»‘å®šç»„ä»¶
     _widgetCharScroller = dynamic_cast<WidgetCharScroller*>(bound["charScroller"]);
 
     _widgetCharGrow = dynamic_cast<WidgetCharGrow*>(bound["charGrow"]);

@@ -135,7 +135,7 @@ std::string GameAttribute::getText() const
 
 void GameAttribute::initialize()
 {
-	// ¶©ÔÄ¶Ô¸Ã¶ÔÏó·¢³öµÄÊı¾İÇëÇó
+	// è®¢é˜…å¯¹è¯¥å¯¹è±¡å‘å‡ºçš„æ•°æ®è¯·æ±‚
 	if (!_temp && getDataType() != Text) {
 		std::function<void(cocos2d::EventCustom*)> func = [this](cocos2d::EventCustom* event) {
 			sendChangeEvent();
@@ -146,7 +146,7 @@ void GameAttribute::initialize()
 
 void GameAttribute::sendChangeEvent() const
 {
-	// ·¢ËÍ°üº¬¸Ä¶¯ºóÊı¾İµÄÏûÏ¢
+	// å‘é€åŒ…å«æ”¹åŠ¨åæ•°æ®çš„æ¶ˆæ¯
 	cocos2d::EventCustom event = cocos2d::EventCustom(_id + ":DataChanged");
 	event.setUserData((void *)(&_data));
 	_dispatcher->dispatchEvent(&event);

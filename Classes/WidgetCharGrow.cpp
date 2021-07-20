@@ -39,8 +39,8 @@ void WidgetCharGrow::initCharData()
 
 void WidgetCharGrow::initBoundNodes()
 {
-	// äÖÈ¾²¼¾Ö
-	// ½ÇÉ«»ù´¡ĞÅÏ¢
+	// æ¸²æŸ“å¸ƒå±€
+	// è§’è‰²åŸºç¡€ä¿¡æ¯
 	const auto& bound = getBoundNodes();
 	dynamic_cast<cocos2d::Sprite*>(bound.at("info.avatar"))->setTexture(
 		_char->getAvatarFileName());
@@ -56,7 +56,7 @@ void WidgetCharGrow::initBoundNodes()
 	map["needed"] = std::to_string(_char->getNextLvExp());
 	XmlLayoutParser::renderLabel(
 		*dynamic_cast<cocos2d::Label*>(bound.at("info.exp")), map);
-	// ÊôĞÔÃû³Æ
+	// å±æ€§åç§°
 	auto util = GameDataUtils::getInstance();
 	for (auto attr : _rawAttrs) {
 		std::string id = attr.first;
@@ -65,7 +65,7 @@ void WidgetCharGrow::initBoundNodes()
 			*dynamic_cast<cocos2d::Label*>(bound.at("attrs." + id + ".name")),
 			"value", name);
 	}
-	// ¼ÓµãÏîÄ¿Ãû³Æ
+	// åŠ ç‚¹é¡¹ç›®åç§°
 	for (auto item : *_growItems) {
 		std::string name = util->getAttrName(item);
 		XmlLayoutParser::renderLabel(
@@ -73,8 +73,8 @@ void WidgetCharGrow::initBoundNodes()
 			"value", name);
 	}
 
-	// ²Ëµ¥ÏîÉèÖÃ»Øµ÷
-	// ¼Óµã¼ıÍ·
+	// èœå•é¡¹è®¾ç½®å›è°ƒ
+	// åŠ ç‚¹ç®­å¤´
 	for (auto name : *_growItems) {
 		dynamic_cast<cocos2d::MenuItem*>(bound.at("items." + name + ".adjust.left"))
 			->setCallback(CC_CALLBACK_1(
@@ -87,7 +87,7 @@ void WidgetCharGrow::initBoundNodes()
 				this, name, 1
 			));
 	}
-	// Ñ¡Ïî
+	// é€‰é¡¹
 	dynamic_cast<cocos2d::MenuItem*>(bound.at("options.ok"))
 		->setCallback(CC_CALLBACK_1(
 			WidgetCharGrow::okButtonCallback,
@@ -120,8 +120,8 @@ void WidgetCharGrow::switchCharacter(std::shared_ptr<GameCharacter> chara)
 
 void WidgetCharGrow::refresh()
 {
-	// äÖÈ¾²¼¾Ö
-	// ÊôĞÔÖµ
+	// æ¸²æŸ“å¸ƒå±€
+	// å±æ€§å€¼
 	const auto& bound = getBoundNodes();
 	for (auto attr : _rawAttrs) {
 		std::string id = attr.first;
@@ -140,13 +140,13 @@ void WidgetCharGrow::refresh()
 			grownl->setTextColor(rawl->getTextColor());
 		}
 	}
-	// ¼Óµã
+	// åŠ ç‚¹
 	for (auto item : *_growItems) {
 		XmlLayoutParser::renderLabel(
 			*dynamic_cast<cocos2d::Label*>(bound.at("items." + item + ".addv")),
 			"value", std::to_string(int(_addPoints.at(item))));
 	}
-	// Ê£ÓàµãÊı
+	// å‰©ä½™ç‚¹æ•°
 	XmlLayoutParser::renderLabel(
 		*dynamic_cast<cocos2d::Label*>(bound.at("point")),
 		"value", std::to_string(_leftPoints));
@@ -167,10 +167,10 @@ void WidgetCharGrow::changeGrowthPoint(Ref* pSender, std::string item, int quant
 
 void WidgetCharGrow::okButtonCallback(Ref* pSender)
 {
-	// Ìá½»µ½½ÇÉ«ĞÅÏ¢
+	// æäº¤åˆ°è§’è‰²ä¿¡æ¯
 	_char->grow(_addPoints);
 	_char->setGrowPoint(_leftPoints);
-	// ¸üĞÂÏÔÊ¾Êı¾İ
+	// æ›´æ–°æ˜¾ç¤ºæ•°æ®
 	for (auto &item : _rawAttrs) {
 		item.second = _grownAttrs.at(item.first);
 	}

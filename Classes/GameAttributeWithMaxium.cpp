@@ -99,12 +99,12 @@ void GameAttributeWithMaxium::initialize()
 		throw std::invalid_argument("an attribute with maxium cannot be a text");
 	}
 
-	// ¶©ÔÄ×î´óÖµÊôĞÔ
+	// è®¢é˜…æœ€å¤§å€¼å±æ€§
 	std::function<void(cocos2d::EventCustom*)> func = [this](cocos2d::EventCustom* event) {
 		onBoundAttributeChange((Data *)event->getUserData());
 	};
 	_changelistener = _dispatcher->addCustomEventListener(_boundAttrId + ":DataChanged", func);
-	// ·¢³öÏûÏ¢ÇëÇó»ñÈ¡×î´óÖµÊôĞÔµÄÖµ
+	// å‘å‡ºæ¶ˆæ¯è¯·æ±‚è·å–æœ€å¤§å€¼å±æ€§çš„å€¼
 	cocos2d::EventCustom event = cocos2d::EventCustom(_boundAttrId + ":DataNeeded");
 	_dispatcher->dispatchEvent(&event);
 }

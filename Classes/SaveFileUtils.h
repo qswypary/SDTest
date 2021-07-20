@@ -23,13 +23,13 @@ private:
 public:
 	static std::shared_ptr<SaveFileUtils> getInstance();
 
-	// »º´æ´¦Àí
+	// ç¼“å­˜å¤„ç†
 
 	void clear(bool isObj = true);
 	void save(std::string filename);
 	void load(std::string filename);
 
-	// ¿ÉÍ¨¹ıÉèÖÃ¡°µ±Ç°½Úµã¡±£¬¶Ô JSON Ê÷½á¹¹µÄ²»Í¬²¿Î»½øĞĞ²Ù×÷
+	// å¯é€šè¿‡è®¾ç½®â€œå½“å‰èŠ‚ç‚¹â€ï¼Œå¯¹ JSON æ ‘ç»“æ„çš„ä¸åŒéƒ¨ä½è¿›è¡Œæ“ä½œ
 
 	void resetCurrentNode();
 	bool isCurrentNodeObject() const;
@@ -38,7 +38,7 @@ public:
 	Status getStatus() const;
 	void setStatus(Status st);
 
-	// µ±Ç°½ÚµãÎª Object ¿ÉÓÃ½Ó¿Ú£º
+	// å½“å‰èŠ‚ç‚¹ä¸º Object å¯ç”¨æ¥å£ï¼š
 
 	void setBoolInObject(std::string key, bool value);
 	void setIntegerInObject(std::string key, int value);
@@ -63,7 +63,7 @@ public:
 
 	void setCurrentNodeInObject(std::string key);
 
-	// µ±Ç°½ÚµãÎª Array ¿ÉÓÃ½Ó¿Ú
+	// å½“å‰èŠ‚ç‚¹ä¸º Array å¯ç”¨æ¥å£
 
 	void appendBoolInArray(bool value);
 	void appendIntegerInArray(int value);
